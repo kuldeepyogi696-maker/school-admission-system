@@ -1,0 +1,17 @@
+<div class="admin-login-wrapper">
+  <form class="admin-login-card" (ngSubmit)="onSubmit()">
+    <h2>Admin Login</h2>
+
+    <label>Username</label>
+    <input type="text" name="username" [(ngModel)]="username" required autocomplete="username" />
+
+    <label>Password</label>
+    <input type="password" name="password" [(ngModel)]="password" required autocomplete="current-password" />
+
+    <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Logging in...' : 'Login' }}
+    </button>
+  </form>
+</div>

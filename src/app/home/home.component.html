@@ -1,0 +1,390 @@
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold d-flex align-items-center gap-2">
+      🎓 RSK Future School
+    </a>
+
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+      ☰
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-2">
+        <li class="nav-item"><a class="nav-link nav-underline">Home</a></li>
+        <li class="nav-item">
+          <a class="nav-link nav-underline" style="cursor:pointer;" (click)="openAbout()">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-underline" style="cursor:pointer;" (click)="openInquiryForm()">Admissions</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-underline" style="cursor:pointer;" (click)="openContact()">Contact</a>
+        </li>
+
+        <!-- Social icons -->
+        <li class="nav-item d-flex gap-3 ms-lg-3">
+          <a href="#" target="_blank" class="social-icon">📘</a>
+          <a href="#" target="_blank" class="social-icon">📷</a>
+          <a href="#" target="_blank" class="social-icon">▶️</a>
+        </li>
+
+        <!-- CTA button -->
+        <li class="nav-item ms-lg-3">
+          <button class="btn btn-warning fw-bold apply-btn" (click)="openFullForm()">
+            Apply Now
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero hero-animate text-center text-white d-flex align-items-center"
+  [style.background-image]="'linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(' + heroImages[currentImageIndex] + ')'">
+
+  <div class="container-fluid facilities-section py-5">
+    <div class="container text-center">
+      <h2 class="fw-bold mb-2">Welcome to RSK Future School</h2>
+      <p class="text-muted mb-4">Everything your child needs to grow and learn</p>
+
+      <button class="btn btn-warning btn-lg anim-item anim-3" (click)="openVideoModal()">
+        ▶ Watch Video
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT POPUP -->
+<div class="modal-backdrop" *ngIf="showAboutBox">
+  <div class="form-box text-center">
+
+    <h2 class="fw-bold text-primary text-center">
+      About RSK Future School
+    </h2>
+
+    <p class="text-center mt-3">
+      RSK Future School is a modern and innovative educational institution
+      committed to providing quality education with a strong focus on
+      academic excellence, discipline, and personality development.
+    </p>
+
+    <p class="text-center">
+      We believe that every child is unique and has the potential to achieve greatness.
+      Our goal is to nurture young minds with knowledge, confidence, and strong moral values
+      so they can succeed in life and contribute positively to society.
+    </p>
+
+    <!-- ⭐ Highlights -->
+    <div class="text-center mt-4">
+      <h5 class="fw-bold">Why Choose Us?</h5>
+
+      <p>🏫 Smart Digital Classrooms</p>
+      <p>📚 Well-Equipped Library</p>
+      <p>🏅 Sports & Physical Development</p>
+      <p>👨‍🏫 Experienced & Caring Teachers</p>
+      <p>💻 Modern Computer Lab</p>
+      <p>🎯 Focus on Discipline & Values</p>
+      <p>🌱 Personality & Skill Development</p>
+    </div>
+
+    <!-- ⭐ Vision -->
+    <div class="text-center mt-4">
+      <h5 class="fw-bold text-success">Our Vision</h5>
+      <p>
+        To become a leading educational institution that builds strong foundations
+        for a successful, confident, and bright future of every student.
+      </p>
+    </div>
+
+    <!-- ⭐ Mission -->
+    <div class="text-center mt-3">
+      <h5 class="fw-bold text-info">Our Mission</h5>
+      <p>
+        To provide a safe, supportive, and inspiring learning environment where
+        students can grow academically, socially, and emotionally.
+      </p>
+    </div>
+
+    <button class="btn btn-danger w-100 mt-3" (click)="closeAbout()">Close</button>
+  </div>
+</div>
+
+<!-- FACILITIES (NEW DESIGN) -->
+<div class="container text-center my-5">
+  <h2 class="fw-bold mb-4">Our Facilities</h2>
+
+  <div class="row g-4 justify-content-center">
+
+    <!-- Smart Classes -->
+    <div class="col-md-4 col-lg-2">
+      <div class="facility-card" (click)="goToSmartClasses()">
+        <img ngSrc="https://images.unsplash.com/photo-1596495577886-d920f1fb7238?w=60&h=40" width="60" height=""
+          style="height:auto;">
+        <h5>Smart Classes</h5>
+        <p>Modern digital classrooms</p>
+      </div>
+    </div>
+
+    <!-- Sports -->
+    <div class="facility-card" (click)="openFacility('sports')">
+      <img src="https://cdn-icons-png.flaticon.com/512/857/857455.png">
+      <h5>Sports</h5>
+      <p>Indoor & outdoor</p>
+    </div>
+
+    <!-- Library -->
+    <div class="facility-card" (click)="openFacility('library')">
+      <div class="facility-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/29/29302.png">
+        <h5>Library</h5>
+        <p>Well stocked</p>
+      </div>
+    </div>
+
+    <!-- Swimming -->
+    <div class="facility-card" (click)="openFacility('swimming')">
+      <div class="facility-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/168/168882.png">
+        <h5>Swimming</h5>
+        <p>Aquatic center</p>
+      </div>
+    </div>
+
+    <!-- Labs -->
+    <div class="facility-card" (click)="openFacility('labs')">
+      <div class="facility-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/4320/4320337.png">
+        <h5>Labs</h5>
+        <p>Hands-on learning</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- GALLERY -->
+<!-- GALLERY -->
+<div class="container text-center my-5">
+  <h2 class="fw-bold">Gallery</h2>
+
+  <div class="row mt-4">
+    <div class="col-md-4">
+      <img src="https://images.unsplash.com/photo-1588072432836-e10032774350" class="gallery-img">
+    </div>
+
+    <div class="col-md-4">
+      <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754" class="gallery-img">
+    </div>
+
+    <div class="col-md-4">
+      <img src="https://images.unsplash.com/photo-1596495577886-d920f1fb7238" class="gallery-img">
+    </div>
+  </div>
+</div>
+<!-- FOOTER -->
+<footer class="bg-dark text-white text-center p-2">
+
+  <div class="row text-start">
+
+    <!-- Administrative Office -->
+    <div class="col-md-3">
+      <h5 class="fw-bold">Administrative Office</h5>
+      <p><b>Address:</b><br>
+        C-160, Shastri Nagar, pali, Rajasthan - 342001
+      </p>
+
+      <p><b>Working Hours:</b><br>
+        Mon-Sat: 09:00 AM - 05:00 PM
+      </p>
+
+      <p><b>Phone:</b><br>
+        +91-7014593611
+      </p>
+
+      <button class="btn btn-primary btn-sm">Raise a Ticket</button>
+    </div>
+
+    <!-- Campuses -->
+    <div class="col-md-3">
+      <h5 class="fw-bold">Campuses</h5>
+      <p><b>Pali-Marwar:</b> Naya Gaon</p>
+      <p><b>Jodhpur:</b> Paota, Ratanada, Shikargarh</p>
+      <p><b>Sumerpur:</b> Koliwara Road</p>
+      <p><b>Phalodi:</b> Adarsh Nagar</p>
+      <p><b>Jaipur:</b> Ambabari, Tonk, Dausa</p>
+      <p><b>Barmer:</b> Uttarlai Road</p>
+    </div>
+
+    <!-- OCSE -->
+    <div class="col-md-3">
+      <h5 class="fw-bold">OCSE Campuses</h5>
+      <p>Jodhpur: CHB, Cantt, Pal Bypass</p>
+      <p>Pali: New Housing Board</p>
+      <p>Jaipur: Bhankrota, Pratap Nagar</p>
+
+      <p><b>Contact:</b><br>
+        +91 99999-44477
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="col-md-3">
+      <h5 class="fw-bold">Quick Links</h5>
+
+      <p style="cursor:pointer;">Pay Fees Online</p>
+      <p style="cursor:pointer;">Career</p>
+      <p style="cursor:pointer;">Alumni Network</p>
+      <p style="cursor:pointer;">Our Blog</p>
+      <p style="cursor:pointer;">Registration</p>
+
+      <h6 class="mt-3 fw-bold">Downloads</h6>
+      <p>Holidays Calendar</p>
+      <p>Admission Syllabus</p>
+      <p>E-Prospectus</p>
+    </div>
+
+  </div>
+
+
+  <p>© 2026 RSK Future School</p>
+</footer>
+
+<!-- INQUIRY FORM -->
+<div class="modal-backdrop" *ngIf="showInquiryForm">
+  <div class="form-box">
+    <h3>Admission Inquiry</h3>
+
+    <form>
+      <input type="text" [(ngModel)]="inquiry.StudentName" name="StudentName" placeholder="Student Name"
+        class="form-control mb-3">
+      <input type="text" [(ngModel)]="inquiry.ParentName" name="ParentName" placeholder="Parent Name"
+        class="form-control mb-3">
+
+      <input type="email" [(ngModel)]="inquiry.Email" name="Email" placeholder="Email" class="form-control mb-3">
+
+      <input type="tel" [(ngModel)]="inquiry.MobileNumber" name="MobileNumber" placeholder="Mobile Number"
+        class="form-control mb-3">
+
+      <button class="btn btn-success w-100 mb-2" (click)="submitInquiry()">
+
+        Submit
+
+      </button>
+
+      <button class="btn btn-danger w-100" (click)="closeInquiryForm()">
+
+        Close
+
+      </button>
+
+    </form>
+  </div>
+</div>
+
+<div class="modal-backdrop" *ngIf="showVideoModal">
+  <div class="form-box video-box">
+    <button class="btn btn-sm btn-danger float-end" (click)="closeVideoModal()">✕</button>
+    <div class="ratio ratio-16x9 mt-4">
+      <iframe src="https://www.youtube.com/embed/C555SO6V-RM" title="School Video" allowfullscreen>
+        <title>School Video"</title>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+<!-- FULL FORM -->
+<div class="modal-backdrop" *ngIf="showFullForm">
+  <div class="form-box">
+    <h3>Full Admission Form</h3>
+
+    <form>
+
+      <!-- Student -->
+      <h5 class="text-primary">Student Details</h5>
+      <input type="text" [(ngModel)]="student. StudentName" name="Name" placeholder="Student Name"
+        class="form-control mb-2">
+      <input type="date" [(ngModel)]="student.DOB" name="DOB" class="form-control mb-2">
+
+      <select [(ngModel)]="student.Gender" name="Gender" class="form-control mb-2">
+        <option value="">Select Gender</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+
+      <!-- Parents -->
+      <h5 class="text-primary mt-3">Parent Details</h5>
+      <input type="text" [(ngModel)]="student.FatherName" name="FatherName" placeholder="Father Name"
+        class="form-control mb-2">
+      <input type="text" [(ngModel)]="student.MotherName" name="MotherName" placeholder="Mother Name"
+        class="form-control mb-2">
+
+      <input type="text" [(ngModel)]="student.MobileNumber" name="MobileNumber" placeholder="Mobile Number"
+        class="form-control mb-2">
+
+      <input type="email" [(ngModel)]="student.Email" name="Email" placeholder="Email" class="form-control mb-2">
+
+      <!-- Address -->
+      <h5 class="text-primary mt-3">Address</h5>
+      <textarea [(ngModel)]="student.FullAddress" name="FullAddress" class="form-control mb-2"
+        placeholder="Full Address">
+</textarea>
+      <!-- Class -->
+      <h5 class="text-primary mt-3">Class Details</h5>
+      <select [(ngModel)]="student.SelectClass" name="SelectClass" class="form-control mb-2">
+        <option>Select Class</option>
+        <option>Nursery</option>
+        <option>KG</option>
+        <option>1st</option>
+        <option>2nd</option>
+        <option>3rd</option>
+        <option>4th</option>
+        <option>5th</option>
+        <option>6st</option>
+        <option>7nd</option>
+        <option>8rd</option>
+        <option>9th</option>
+        <option>10th</option>
+      </select>
+
+      <!-- Buttons -->
+      <button class="btn btn-success w-100 mt-3" type="button" (click)="submitForm()">
+
+        Submit
+
+      </button>
+
+      <button class="btn btn-danger w-100 mt-2" type="button" (click)="closeFullForm()">
+        Close
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="modal-backdrop" *ngIf="showContactBox">
+  <div class="form-box text-center">
+    <h4>Contact Us</h4>
+    <p>📞 7014593611, 9166506814</p>
+
+    <button class="btn btn-danger" (click)="closeContact()">Close</button>
+  </div>
+</div>
+<!-- FACILITY DETAILS POPUP -->
+<div class="modal-backdrop" *ngIf="showFacilityModal">
+  <div class="form-box">
+    <div class="ratio ratio-16x9 mb-3">
+      <iframe [src]="selectedFacility.safeVideoUrl" allowfullscreen></iframe>
+    </div>
+    <h3 class="fw-bold mb-3">{{ selectedFacility.title }}</h3>
+    <p>{{ selectedFacility.text }}</p>
+    <button class="btn btn-danger w-100 mt-2" (click)="closeFacility()">Close</button>
+  </div>
+</div>
+<a href="https://wa.me/917014593611?text=Hi%2C%20I%20want%20to%20know%20more%20about%20RSK%20Future%20School"
+  target="_blank" class="whatsapp-float">
+  <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp">
+</a>

@@ -1,0 +1,126 @@
+<div class="dashboard-wrapper">
+  <header class="dashboard-header">
+    <h2>Admin Dashboard</h2>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </header>
+
+  <div class="tabs">
+    <button [class.active]="activeTab === 'admissions'" (click)="setTab('admissions')">
+      Admissions ({{ admissions.length }})
+    </button>
+    <button [class.active]="activeTab === 'inquiries'" (click)="setTab('inquiries')">
+      Inquiries ({{ inquiries.length }})
+    </button>
+  </div>
+
+  <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <div *ngIf="activeTab === 'admissions'" class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+          <th>DOB</th>
+          <th>Gender</th>
+          <th>Father Name</th>
+          <th>Mother Name</th>
+          <th>Mobile</th>
+          <th>Email</th>
+          <th>Address</th>
+          <th>Class</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of admissions">
+          <ng-container *ngIf="editingId === item.id">
+            <td>{{ item.id }}</td>
+            <td><input [(ngModel)]="editForm.studentName" /></td>
+            <td><input type="date" [(ngModel)]="editForm.dob" /></td>
+            <td>
+              <select [(ngModel)]="editForm.gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </td>
+            <td><input [(ngModel)]="editForm.fatherName" /></td>
+            <td><input [(ngModel)]="editForm.motherName" /></td>
+            <td><input [(ngModel)]="editForm.mobileNumber" /></td>
+            <td><input [(ngModel)]="editForm.email" /></td>
+            <td><input [(ngModel)]="editForm.fullAddress" /></td>
+            <td><input [(ngModel)]="editForm.selectClass" /></td>
+            <td>
+              <button class="save-btn" (click)="saveEdit(item.id)">Save</button>
+              <button class="cancel-btn" (click)="cancelEdit()">Cancel</button>
+            </td>
+          </ng-container>
+
+          <ng-container *ngIf="editingId !== item.id">
+            <td>{{ item.id }}</td>
+            <td>{{ item.studentName }}</td>
+            <td>{{ item.dob | date: 'dd-MM-yyyy' }}</td>
+            <td>{{ item.gender }}</td>
+            <td>{{ item.fatherName }}</td>
+            <td>{{ item.motherName }}</td>
+            <td>{{ item.mobileNumber }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.fullAddress }}</td>
+            <td>{{ item.selectClass }}</td>
+            <td>
+              <button class="edit-btn" (click)="startEdit(item)">Edit</button>
+              <button class="delete-btn" (click)="deleteAdmission(item.id)">Delete</button>
+            </td>
+          </ng-container>
+        </tr>
+        <tr *ngIf="admissions.length === 0">
+          <td colspan="11" class="empty">No admissions yet</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+<div *ngIf="activeTab === 'inquiries'" class="table-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Student Name</th>
+        <th>Parent Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of inquiries">
+        <ng-container *ngIf="editingInquiryId === item.id">
+          <td>{{ item.id }}</td>
+          <td><input [(ngModel)]="editInquiryForm.studentName" /></td>
+          <td><input [(ngModel)]="editInquiryForm.parentName" /></td>
+          <td><input [(ngModel)]="editInquiryForm.email" /></td>
+          <td><input [(ngModel)]="editInquiryForm.mobileNumber" /></td>
+          <td>
+            <button class="save-btn" (click)="saveInquiryEdit(item.id)">Save</button>
+            <button class="cancel-btn" (click)="cancelInquiryEdit()">Cancel</button>
+          </td>
+        </ng-container>
+
+        <ng-container *ngIf="editingInquiryId !== item.id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.studentName }}</td>
+          <td>{{ item.parentName }}</td>
+          <td>{{ item.email }}</td>
+          <td>{{ item.mobileNumber }}</td>
+          <td>
+            <button class="edit-btn" (click)="startInquiryEdit(item)">Edit</button>
+            <button class="delete-btn" (click)="deleteInquiry(item.id)">Delete</button>
+          </td>
+        </ng-container>
+      </tr>
+      <tr *ngIf="inquiries.length === 0">
+        <td colspan="6" class="empty">No inquiries yet</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
